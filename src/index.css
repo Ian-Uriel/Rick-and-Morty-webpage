@@ -15,14 +15,17 @@ code {
 
 .Cards{
   display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: space-between;
   flex-direction: row;
   gap: 1em;
 }
 
 .Card{
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 1em;
   background-color: white;
   border-radius: .5rem;
 }
@@ -34,5 +37,10 @@ code {
 }
 
 .boto{
-  gap: 1em;
+  margin: 5px;
+  color: white;
+  background-color: red;
+  border-radius: .2rem;
+  border-color: gray;
+  border-width: 1px;
 }
