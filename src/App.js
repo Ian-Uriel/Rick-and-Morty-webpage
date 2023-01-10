@@ -16,11 +16,9 @@ function App () {
           onClose ={() => alert('Emulamos que se cierra la card')}
         />
       </div>
-      
         <Cards
           characters={characters}
         />
-
       <div>
         <SearchBar
           onSearch={(characterID) => alert(characterID)}

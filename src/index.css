@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("../img/space.png");
 }
 
 code {
@@ -18,5 +19,20 @@ code {
   align-content: center;
   justify-content: space-between;
   flex-direction: row;
+  gap: 1em;
+}
+
+.Card{
+  background-color: white;
+  border-radius: .5rem;
+}
+
+.Exit{
+  display: flex;
+  justify-content: right;
+  gap: 1em;
+}
+
+.boto{
   gap: 1em;
 }
