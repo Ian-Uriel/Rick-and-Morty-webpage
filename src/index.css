@@ -20,12 +20,13 @@ code {
 }
 
 .Card{
+  position: relative;
   display: flex;
   align-items: center;
   align-content: center;
   justify-content: space-between;
   flex-direction: column;
-  gap: 1em;
+  gap: .5rem;
   background-color: white;
   border-radius: .5rem;
 }
@@ -34,13 +35,48 @@ code {
   display: flex;
   justify-content: right;
   gap: 1em;
+  width: 100%;
 }
 
 .boto{
+  cursor: pointer;
   margin: 5px;
   color: white;
   background-color: red;
   border-radius: .2rem;
   border-color: gray;
   border-width: 1px;
+}
+
+.imgCard{
+  border-radius: .5rem;
+}
+
+.nameCard{
+  position: absolute;
+  display: flex;
+  left: 3%;
+  bottom: 15%;
+  color: white;
+  background-color: black;
+  opacity: 60%;
+  
+}
+
+.infoCard{
+  width:100%;
+  height: min-content;
+  padding-bottom: .5rem;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}
+
+
+
+
+
+h2{
+  margin: 0;
 }
