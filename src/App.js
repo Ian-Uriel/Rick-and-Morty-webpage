@@ -28,16 +28,14 @@ function App () {
 
   return (
     <div className='App' style={{ padding: '25px' }}>
-     <Nav onSearch={onSearch} /> 
-      <div>
-        <Cards onClose={onClose} characters={characters} />
-        <Routes>
-          <Route path="about" element={<About />} />
-          <Route path="Cards" element={<Cards />} />
-          <Route path="Nav" element={<Nav />} />
-          <Route path="Detail/:id" element={<Detail />} />
-        </Routes>
-      </div>
+      <Nav onSearch={onSearch} /> 
+        <div>
+          <Routes>
+            <Route path="home" element={<Cards onClose={onClose} characters={characters} />} />
+            <Route path="about" element={<About />} />
+            <Route path="detail/:detailId" element={<Detail />} />
+          </Routes>
+        </div>
     </div>
   )
 }

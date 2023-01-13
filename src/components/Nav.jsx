@@ -5,10 +5,10 @@ const Nav = ({onSearch}) =>{
     return (
         <nav>
             <SearchBar onSearch={onSearch}/>
-            <Link to='/About'>
+            <Link to='about'>
                 <h3>About</h3>
             </Link>
-            <Link to='/'>
+            <Link to='home'>
                 <h3>Home</h3>
             </Link>
         </nav>
