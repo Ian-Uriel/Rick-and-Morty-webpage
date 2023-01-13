@@ -14,9 +14,11 @@ code {
 }
 
 .Cards{
+  justify-content: center;
   display: flex;
   flex-direction: row;
   gap: 1em;
+  flex-wrap: wrap;
 }
 
 .Card{

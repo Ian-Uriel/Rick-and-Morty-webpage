@@ -1,7 +1,10 @@
 import './App.css'
 import Cards from './components/Cards.jsx'
 import Nav from "./components/Nav.jsx"
+import About from './components/About'
+import Detail from './components/Detail'
 import {useState} from "react"
+import { Routes, Route } from 'react-router-dom'
 
 function App () {
 
@@ -25,12 +28,15 @@ function App () {
 
   return (
     <div className='App' style={{ padding: '25px' }}>
-     <Nav onSearch={onSearch} />
+     <Nav onSearch={onSearch} /> 
       <div>
-        <Cards
-          onClose={onClose}
-          characters={characters}
-        />
+        <Cards onClose={onClose} characters={characters} />
+        <Routes>
+          <Route path="about" element={<About />} />
+          <Route path="Cards" element={<Cards />} />
+          <Route path="Nav" element={<Nav />} />
+          <Route path="Detail/:id" element={<Detail />} />
+        </Routes>
       </div>
     </div>
   )
