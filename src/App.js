@@ -1,8 +1,8 @@
 import './App.css'
-import Cards from './components/Cards.jsx'
-import Nav from "./components/Nav.jsx"
-import About from './components/About'
-import Detail from './components/Detail'
+import Cards from './components/Cards/Cards'
+import Nav from "./components/NavBar/Nav"
+import About from './components/About/About'
+import Detail from './components/Details/Detail'
 import {useState} from "react"
 import { Routes, Route } from 'react-router-dom'
 
