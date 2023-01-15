@@ -1,18 +1,23 @@
 import SearchBar from "../SearchBar/SearchBar"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 const Nav = ({onSearch}) =>{
-    return (
-        <nav>
-            <SearchBar onSearch={onSearch}/>
-            <Link to='about'>
-                <h3>About</h3>
-            </Link>
-            <Link to='home'>
-                <h3>Home</h3>
-            </Link>
-        </nav>
-    )
+    const url = useLocation()
+    if(url.pathname !== '/'){
+        console.log(url.pathname);
+        return (
+            <nav>
+                <SearchBar onSearch={onSearch}/>
+                <Link to='about'>
+                    <h3>About</h3>
+                </Link>
+                <Link to='home'>
+                    <h3>Home</h3>
+                </Link>
+            </nav>
+        )
+    }
+    return
 }
 
 

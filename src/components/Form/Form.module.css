@@ -1,0 +1,16 @@
+.container{
+    background-color: gray;
+}
+
+.warning {
+    size: 2rem;
+    border: solid red 1px;
+    border-radius: 0.2em;
+  }
+  
+  .danger {
+    font-size:large;
+    font-weight: bold;
+    color: red;
+    margin-left: 10em;
+  }
