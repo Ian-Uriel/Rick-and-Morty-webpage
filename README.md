@@ -1,8 +1,8 @@
-## HW 10: React-Forms | Integración
+## HW 12: React-Redux | Integración
 
 ## **Duración estimada 🕒**
 
-60 minutos
+x minutos
 
 <br />
 
@@ -10,165 +10,160 @@
 
 ## **Rick & Morty App**
 
-### **INTRO**
+## **INTRO**
 
-En la integración de hoy crearemos un formulario de login. Así, cada vez que ingresemos a nuestra app tendremos que logearnos para utilizarla. Tanto el formulario como sus validaciones las haremos con Javascript.
+En la integración de hoy crearemos un espacio en el que podremos guardar a nuestros personajes favoritos. ¡Podremos agregarlos y eliminarlos!
 
-Nuestro formulario va a estar compuesto de:
+Para esto:
 
--  Username: el nombre de usuario tiene que ser un email, si no, tiene que mostrar un error.
--  Password: la contraseña tiene que contener por lo menos un número y tener una longitud de entre 6 y 10 caracteres, si no debe mostrar un error.
-
-<br />
-
----
-
-## **COMENCEMOS**
-
-Vamos a comenzar creando el componente que nos falta en nuestra carpeta components. Creamos `Form.jsx` con su respectivo archivo `.css` para darle estilos.
-
----
-
-### 👩‍💻 EJERCICIO 1
-
-### Estructura
-
-Vamos a trabajar en el archivo `Form.jsx` que acabas de crear.
-
-Primero agregaremos una etiqueta `<div />` que envolverá a todo el componente. Tiene que haber una etiqueta `<label />` y una `<input />` tanto para el **username** como para la **password**. Por último, agrega una etiqueta `<button />`.
-
-Dale algo de estilos al componente. Te dejamos una plantilla de cómo puede quedar!
-
-<img src="./img/form_v1.png" alt="" />
+-  ❤️ Fav button: nuestras Cards tendrán un botón para agregar/eliminar de favoritos.
+-  👀 Vista nueva: crearemos una nueva vista en la que se muestre específicamente todos nuestros personajes favoritos.
 
 <br />
 
 ---
 
-### **👩‍💻 EJERCICIO 2**
+### **COMENCEMOS**
 
-### **Ruteo**
+Para comenzar, en tu terminal dirígete a la carpeta raíz de tu proyecto. Allí tendrás que instalar las siguientes dependencias:
 
-Ahora deberás cumplir los siguientes dos pasos:
-
-1. Crea una ruta en el archivo `app.jsx` para que el formulario se renderice en el path "`/`".
-2. Si obervas la imagen del ejercicio anterior, la barra de navegación también se muestra en el **Login**. Cambia esto de modo que el `<Nav />` se muestre en todos lados, menos en el **Login**.
-
-> **PISTA:** investiga sobre el hook "useLocation" de react-router-dom, y piensa cómo hacer un renderizado condicional.
-
-<br />
-
----
-
-### **👩‍💻 EJERCICIO 3**
-
-### **Estado del formulario**
-
-El siguiente paso es poder controlar nuestro formulario. Para esto trabajaremos con un estado local con esta estructura:
-
-```js
-// Form.jsx
-const [userData, setUserData] = React.useState({ username: '', password: '' });
+```bash
+npm i redux react-redux redux-thunk
 ```
 
-Ahora conecta tu estado local con los inputs correspondientes utilizando la propiedad `value`.
+Una vez instaladas, a la altura de la carpeta "_components_" (es decir, que sea una carpeta hermana), crea una nueva carpeta llamada "**redux**". Dentro de ella crea los archivos `actions.js`, `store.js` y `reducer.js`.
 
-Por último, usaremos el evento `onChange` en ambos inputs para poder guardar la información del usuario. Te sugerimos que crees una función **handleInputChange** la cual reciba el evento del input, y a partir de esta se modifique el estado local.
+Dentro del archivo `store.js`, haz la configuración del store. Una vez configurado, deberás importarlo en tu archivo `index.js` junto con el Provider, y configurarlo en el wraper finalmente.
 
-<br />
-
----
-
-### **👩‍💻 EJERCICIO 4**
-
-### **Validaciones**
-
-En tu componente `<Form />` crea un nuevo estado local llamado "**errors**". Este es el estado que usarás para encontrar errores en el formulario.
-
-Luego crea un nuevo archivo en la carpeta de tu componente Form.jsx con el nombre "**validation.js**". Aquí dentro deberás crear una función que valide lo siguiente:
-
-**USERNAME**
-
--  el nombre de usuario tiene que ser un email _(explora validaciónes REGEX en internet!)_.
--  el nombre de usuario no puede estar vacío.
--  el nombre de usuario no puede tener más de 35 caracteres.
-
-**PASSWORD**
-
--  la contraseña tiene que tener al menos un número.
--  la contraseña tiene que tener una longitud entre 6 y 10 caracteres.
-
-No te olvides de renderizar y darle estilos a tus errores! Te dejamos un ejemplo de cómo puede quedar.
-
-<img src="./img/input_error.png" alt="" >
+> **NOTA:** puedes guiarte por cómo lo tienes hecho en la homework anterior. Ten en cuenta que el reducer lo crearás en el siguiente paso.
 
 <br />
 
 ---
 
-### **👩‍💻 EJERCICIO 5**
+## **👩‍💻 EJERCICIO 1**
 
-### **Simulación de seguridad**
+### **REDUCER**
 
-Ahora simularemos una base de datos donde esté guardado un username y password. De esta forma, solo si la información de usuario coincide podrá usar la aplicación. Para esto:
+Dirígete al archivo en el que se encuentra tu **reducer**. Allí deberás:
 
-1. En el archivo `App.js` crea lo siguiente:
+1. Crear un _**initialState**_ con una propiedad llamada "**myFavorites**". Esta propiedad será un array vacío.
 
-   -  Un estado local llamado "**access**" que se inicialice en `false`.
-   -  Una variable llamada "**username**", y que sea igual a tu email.
-   -  Una variable "**password**", y que sea igual a una contraseña.
+2. Luego deberás crear tu reducer. Recuerda que este recibe dos parámetros, y dentro de él hay un switch.
 
-2. Crea una función llamada "**login**" que reciba por parámetro "_userData_". Esta función tiene que preguntar si el username y password que declaraste más arriba son iguales a los que les está llegando por parámetro. En caso afirmativo, el estado local access ahora será `true`. Importa el hook "**useNavigate**" de `react-router-dom` y haremos que nos redirija a `/home` si la información es correcta.
+> **NOTA:** ten en cuenta el modo en el que lo exportas, y cómo lo importas dentro de tu store.
 
-```jsx
-const navigate = useNavigate();
-const [access, setAccess] = useState(false);
-const username = 'ejemplo@gmail.com';
-const password = '1password';
+3. Dentro del switch de tu reducer, crea un nuevo caso en el que podrás agregar el personaje que recibes por payload a tu estado "_myFavorites_".
 
-function login(userData) {
-   if (userData.password === password && userData.username === username) {
-      setAccess(true);
-      navigate('/home');
-   }
+4. Crea un nuevo caso en el elimines el personaje que recibes por payload de tu estado inicial. Deberás filtrar el personaje a partir de su **ID**.
+
+5. No te olvides de tu caso _**default**_.
+
+<br />
+
+---
+
+## **👩‍💻 EJERCICIO 2**
+
+### **ACTIONS**
+
+Crea dos _actions-creators_.
+
+-  Una que sea para agregar personajes a tu lista de favoritos. Recibe por parámetro el personaje.
+
+-  Otro que sea para eliminar un personaje de la lista de favoritos. Recibe por parámetro el id del personaje.
+
+> **NOTA:** no olvides que el nombre que asignes en la propiedad "TYPE" de tu acción, debe coincidir exactamente con el nombre de los casos que hayas asignado en tu reducer.
+
+<br />
+
+---
+
+## **👩‍💻 EJERCICIO 3**
+
+### **FAV BUTTON**
+
+Ahora crearemos un botón para agregar y eliminar de favoritos! Para esto:
+
+1. Dirígete al componente `Card`. Aquí deberás crear una función **mapDispatchToProps** que contenga dos funciones: Una para agregar tu personaje favorito, y otra para eliminarlo. Ten en cuenta que deberás importar las _**actions**_ que ya creaste.
+
+2. Luego conecta esta función con tu componente, y recibe ambas funciones despachadoras por props.
+
+3. Ahora crea un estado local en tu componente que se llame **isFav**, e inicialízalo en `false`.
+
+4. Crea una función en el cuerpo del componente llamada **handleFavorite**. Esta función estará dividida en dos partes:
+
+   -  Si el estado _**isFav**_ es `true`, entonces settea ese estado en false, y despacha la función **deleteFavorite** que recibiste por props pasándole el **ID** del personaje como argumento.
+   -  Si el estado _**isFav**_ es `false`, entonces settea ese estado en true, y despacha la función **addFavorite** que recibiste por props, pasándole `props` como argumento.
+
+5. Ahora te ayudaremos a crear un renderizado condicional. Si tu estado local `isFav` es true, entonces se mostrará un botón. Si es false, se mostrará otro botón. Para esto, copia y pega el siguiente código al comienzo del renderizado de tu componente (no te olvides de darle estilos).
+
+```javascript
+{
+   isFav ? (
+      <button onClick={handleFavorite}>❤️</button>
+   ) : (
+      <button onClick={handleFavorite}>🤍</button>
+   );
 }
 ```
 
-3. Por último, lleva el siguiente código a tu componente (no te olvides de importar el `useEffect`).
+En este punto debería quedarte algo como esto:
+
+<img src="./img/favButton.gif" alt="" />
+
+6. Una vez hecho esto, nos tenemos que asegurar que el status de nuestro estado local se mantenga aunque nos vayamos y volvamos al componente. Para esto vamos a agregar en este componete una función **mapStateToProps**. Esa función debe traer nuestro estado global **myFavorites**. Recíbelo por `props` dentro de tu componente.
+
+7. Este `useEffect` comprobará si el personaje que contiene esta `Card` ya está dentro de tus favoritos. En ese caso setteará el estado **isFav** en true. Cópialo y pégalo dentro de tu componente (no te olvides de importarlo).
 
 ```javascript
-//App.js
 useEffect(() => {
-   !access && navigate('/');
-}, [access]);
+   myFavorites.forEach((fav) => {
+      if (fav.id === props.id) {
+         setIsFav(true);
+      }
+   });
+}, [myFavorites]);
 ```
 
-Esto no nos dejará navegar por la aplicación, al menos que ingresemos la información correcta!
+> **DESAFÍO:** te desafiamos a que reconstruyas ese useEffect, pero utilizando un **bucle For** en lugar de un **.forEach()**.
 
 <br />
 
 ---
 
-### **👩‍💻 EJERCICIO 6**
+## **👩‍💻 EJERCICIO 4**
 
-### **Login**
+### **COMPONENTE DE FAVORITOS**
 
-Ahora le daremos la funcionalidad de cambiar los permisos a nuestro login! Para esto:
+Dirígete a tu carpeta de componentes, y crea allí dentro una carpeta que contenga un archivo `Favorites.jsx` y otro `favorites.css`.
 
-1. En el archivo `App.js`, le pasaremos la función **login** que creaste en el ejercicio anterior por props al componente `<Form />`.
+1. Crea una ruta en el archivo `App.js` para mostrar este componente. La ruta se puede llamar **/favorites**. También crea un botón en tu `Navbar` que te redirija a esta ruta, y otro que te devuelva a tu `Home`.
 
-2. En el componente `<Form />`, crea una función "**handleSubmit**". Esta función por dentro sólo debe ejecutar la función "**login**" recibida por props. No te olvides de pasarle por parámetro tu estado local _userData_!
+2. Dentro de este componente crea una función **mapStateToProps**. Esta función debe traer nuestro estado global _**myFavorites**_ a este componente. Luego recíbelo por props.
 
-¡Listo! Ya tienes un Login funcional!!😀🥳🤓
+3. Una vez que tengas la lista de tus personajes favoritos dentro de tu componente, deberás mappearlo (recorrerlo) y re-renderizar un `<div>` con información del personaje.
 
-Pruebalo ingresando la información que declaraste previamente.
+> **NOTA:** no te olvides de darle estilos al componente.
 
 <br />
 
 ---
 
-### **📌 EJERCICIO EXTRA**
+### **¡LISTO! YA FUNCIONA TODO**
 
--  Ahora te desafiamos a que crees un botón "**Logout**" en tu componente `<Nav />`. Si lo presionas debe quitar los permisos de acceso y redirigirte automáticamente a tu componente `<Form />`.
+Todo el trabajo que hiciste en esta integración debería darte un resultado y funcionamiento similar a este:
 
-> **PISTA:** lo puedes hacer creando una función **logout** en tu archivo App.js.
+<img src="./img/favDemostration.gif" alt="" />
+
+<br />
+
+---
+
+## **📌 EJERCICIO EXTRA**
+
+### **¡Ahora te proponemos dos desafíos!**
+
+**1.** Si revisas, esta aplicación tiene un pequeño bug que tendrás que resolver... Cuando presionas el ❤️ de una de las Cards, el personaje aparece en la vista de "**Favoritos**". Pero si luego eliminas el personaje, este aún permanece en esta vista. Busca la manera para que cuando elimines un personaje, también se elimine de "**Favoritos**" (si es que está allí).
+
+**2.** Te animamos a que crees, dentro de esta misma aplicación, una nueva vista que sea tu "**PORTFOLIO**". Aquí podrás agregar/eliminar/editar tus proyectos construidos durante el bootcamp en Henry!

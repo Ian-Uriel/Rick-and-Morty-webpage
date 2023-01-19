@@ -11,8 +11,8 @@ function App () {
   const navigate = useNavigate()
   const [characters, setCharacters] = useState([])
   const [access, setAccess] = useState(false)
-  const username = 'ian.duhart@gmail.com'
-  const password = '1IanPass'
+  const username = 'admin@gmail.com'
+  const password = '1admin'
   
   const Login = (userData) =>{
     if(userData.password === password && userData.username === username){

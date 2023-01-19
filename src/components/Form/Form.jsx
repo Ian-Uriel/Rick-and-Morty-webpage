@@ -52,6 +52,7 @@ const Form = (props) => {
     return(
         <div className={styles.container}>
             <form onSubmit={handleSubmit}>
+                <h1>EL user es admin@gmail.com y la contraseña 1admin</h1>
                 <label name='username' >Username:</label>
                 <input type='text' name= 'username' value={userData.username} onChange={handleInputChange} />
                 {errors.username !== ''? <p className={styles.danger} >{errors.username}</p> : ''}
