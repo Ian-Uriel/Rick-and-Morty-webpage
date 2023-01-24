@@ -4,7 +4,6 @@ import { Link, useLocation } from "react-router-dom"
 const Nav = ({onSearch}) =>{
     const url = useLocation()
     if(url.pathname !== '/'){
-        console.log(url.pathname);
         return (
             <nav>
                 <SearchBar onSearch={onSearch}/>
