@@ -4,6 +4,8 @@ import Nav from "./components/NavBar/Nav"
 import About from './components/About/About'
 import Detail from './components/Details/Detail'
 import Form from './components/Form/Form'
+import Favorites from './components/Favorite/Favorites'
+
 import {useState, useEffect} from "react"
 import { Routes, Route, useNavigate } from 'react-router-dom'
 
@@ -27,7 +29,7 @@ function App () {
   
   const onSearch = (character) =>{
 
-    fetch(`http://localhost:3001/rickandmorty/character/${character}`)
+    fetch(`https://rickandmortyapi.com/api/character/${character}`)
     .then((response) => response.json())
     .then((data) => {
        if (data.name) {
@@ -48,9 +50,10 @@ function App () {
         <div>
           <Routes>
             <Route path='/' element={<Form Login={Login} />} />
-            <Route path="home" element={<Cards onClose={onClose} characters={characters} />} />
-            <Route path="about" element={<About />} />
-            <Route path="detail/:detailId" element={<Detail />} />
+            <Route path="/home" element={<Cards onClose={onClose} characters={characters} />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/detail/:detailId" element={<Detail />} />
+            <Route path="/favorites" element={< Favorites/>} />
           </Routes>
         </div>
     </div>
